@@ -10,6 +10,7 @@ const Product = () => {
     const { id } = useParams();
     const [products, setProducts] = useState({});
     const [loading, setLoading] = useState(false);
+    const [quantity, setQuantity] = useState(1);
 
     const numberFormat = (value) =>
         new Intl.NumberFormat('th-TH', {
@@ -94,29 +95,57 @@ const Product = () => {
                         </div>
 
                         <div className="quantityTotal">
-                                <div className="quantityBox">Quantity (Box)</div>
-                                <div className="totalMoney">Subtotal {numberFormat}</div>
+                            <div className="quantityBox">Quantity (Box)</div>
+                            <div className="totalMoney">Subtotal {numberFormat}</div>
                         </div>
 
                         <div className="d-flex count">
-                            <Count/>
+                            <button
+                                type="button"
+                                className="button-add"
+                                disabled={quantity === 0}
+                                onClick={() => {
+                                    setQuantity(Number(quantity) - 1);
+                                }}
+                            >
+                                -
+                            </button>
+                            <input
+                                className="input"
+                                type={"number"}
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                                min={0}
+                            />
+                            <button
+                                type="button"
+                                className="button-add"
+                                onClick={() => {
+                                    setQuantity(Number(quantity) + 1);
+                                }}
+                            >
+                                +
+                            </button>
                         </div>
-
-                        <div>6</div>
                     </div>
+
+                    
+
+                    <div>6</div>
                 </div>
+            
             </>
         )
     }
 
-    return (
-        <div>
-            <div className="page">
-                {loading ? <Loading /> : <ShowProduct />}
-            </div>
+return (
+    <div>
+        <div className="page">
+            {loading ? <Loading /> : <ShowProduct />}
         </div>
+    </div>
 
-    );
+);
 }
 
 export default Product;

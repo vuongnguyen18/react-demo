@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../Product.css";
 import RatingStar from "./RatingStar";
-import Count from "./Count";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+
+
 
 
 const Product = () => {
@@ -11,6 +15,7 @@ const Product = () => {
     const [products, setProducts] = useState({});
     const [loading, setLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [tabs, setTabs] = useState("one");
 
     const numberFormat = (value) =>
         new Intl.NumberFormat('th-TH', {
@@ -72,7 +77,8 @@ const Product = () => {
                             {products.name}
                         </div>
 
-                        <div className="rating">
+
+                        <div className="ratingName">
                             <div className="star">
                                 <RatingStar rate={products?.rating_summary || []} />
                             </div>
@@ -95,57 +101,88 @@ const Product = () => {
                         </div>
 
                         <div className="quantityTotal">
-                            <div className="quantityBox">Quantity (Box)</div>
-                            <div className="totalMoney">Subtotal {numberFormat}</div>
+                            <div className="quantityBox">Quantity (Box)
+                                <div className="addBox">
+                                    <button
+                                        type="button"
+                                        className="button-add"
+                                        onClick={() => {
+                                            setQuantity(Number(quantity) + 1);
+                                        }}
+                                    >
+                                        +
+                                    </button>
+                                    <input
+                                        className="input"
+                                        type={"number"}
+                                        value={quantity}
+                                        onChange={(e) => setQuantity(e.target.value)}
+                                        min={0}
+                                    />
+                                    <button
+                                        type="button"
+                                        className="button-add"
+                                        disabled={quantity === 0}
+                                        onClick={() => {
+                                            setQuantity(Number(quantity) - 1);
+                                        }}
+                                    >
+                                        -
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="title">Subtotal ฿ </div>
+                                <div className="final-price">
+                                    {numberFormat(products?.price?.regularPrice?.amount?.value * quantity)}
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="d-flex count">
-                            <button
-                                type="button"
-                                className="button-add"
-                                disabled={quantity === 0}
-                                onClick={() => {
-                                    setQuantity(Number(quantity) - 1);
-                                }}
-                            >
-                                -
+                        <ul className="textBox">
+                            <li>Minimum orders 1 Box</li>
+                            <li>Stock Available 100 Box</li>
+                        </ul>
+
+                        <div className="buyAndAdd">
+                            <button className="addToCart">
+                                <img src={'images/cart'} className="" width={20} /> Add to cart
                             </button>
-                            <input
-                                className="input"
-                                type={"number"}
-                                value={quantity}
-                                onChange={(e) => setQuantity(e.target.value)}
-                                min={0}
-                            />
-                            <button
-                                type="button"
-                                className="button-add"
-                                onClick={() => {
-                                    setQuantity(Number(quantity) + 1);
-                                }}
-                            >
-                                +
-                            </button>
+                            <button className="buy">Buy Now</button>
                         </div>
+
+                        <p className="sku">SKU: {products?.sku}</p>
                     </div>
-
-                    
-
-                    <div>6</div>
                 </div>
-            
+
+                <div className="product-tabs">
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Tabs
+                            textColor="secondary"
+                            indicatorColor="secondary"
+                            value={tabs}
+                            onChange={(_, value) => setTabs(value)}
+                        >
+                            <Tab value="one" label="Description" />
+                            <Tab value="two" label="Reviews" />
+                        </Tabs>
+                    </Box>
+                </div>
+
+
+
             </>
         )
     }
 
-return (
-    <div>
-        <div className="page">
-            {loading ? <Loading /> : <ShowProduct />}
+    return (
+        <div>
+            <div className="page">
+                {loading ? <Loading /> : <ShowProduct />}
+            </div>
         </div>
-    </div>
 
-);
+    );
 }
 
 export default Product;

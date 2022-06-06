@@ -18,10 +18,12 @@
 }
 
 .rating {
+    margin-top: 50px;
+    display: flex;
     justify-content: space-between;
-    margin-top: 40px;
-    
 }
+
+
 
 .price {
     margin-top: 30px;

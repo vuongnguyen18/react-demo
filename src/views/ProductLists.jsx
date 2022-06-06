@@ -87,9 +87,9 @@ const ProductLists = () => {
                     <div><del>Price after discount</del></div>
 
 
-                    <div className="d-flex rating">
+                    <div className="rating">
                       <RatingStar rate={item?.rating_summary} />
-                      <div><img src="images/heart.png" width={30} /></div>
+                      <div className="imageOfHeart"><img src="images/heart.png" width={30} /></div>
                     </div>
                   </div>
                 </div>

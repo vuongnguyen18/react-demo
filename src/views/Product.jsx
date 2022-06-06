@@ -69,7 +69,7 @@ const Product = () => {
                     </div>
 
                     <div className="productDescription">
-                        <div className="d-flex">
+                        <div className="d-flex saleAndShipText">
                             <p className="p-2 text1">Sale</p>
                             <p className="p-2 text2">Ready to ship</p>
                         </div>
@@ -86,7 +86,7 @@ const Product = () => {
                                 {products.review_count} Reviews | Number sold
                             </div>
                             <div>
-                                <img src="images/heart.png" width={30} />
+                                <img src={`images/heart.png`} width={30} />
                             </div>
                         </div>
 
@@ -97,7 +97,7 @@ const Product = () => {
                             <div className="discountPrice">
                                 <del>{numberFormat(10)}</del>
                             </div>
-                            <div class="discountTag">Discount</div>
+                            <div className="discountTag">Discount</div>
                         </div>
 
                         <div className="quantityTotal">

@@ -55,9 +55,9 @@ const ProductLists = () => {
         {products.map((item) => {
           console.log(item);
           return (
-            <>
-              <div className="col-md-3 mb-4">
-                <div className="card h-10 p-9" key={item?.id}>
+          
+              <div className="col-md-3 mb-4" key={item?.id}>
+                <div className="card h-10 p-9">
                 <NavLink to={`/product/${item?.id}`}
                         style={({ isActive }) => ({
                           color: isActive ? '#fff' : '#545e6f',
@@ -81,7 +81,7 @@ const ProductLists = () => {
                         {numberFormat(item?.price?.regularPrice?.amount?.value)}
                       </NavLink>
                       <div>
-                        <p class="discount" >Discount</p>
+                        <p className="discount" >Discount</p>
                       </div>
                     </div>
                     <div><del>Price after discount</del></div>
@@ -94,7 +94,6 @@ const ProductLists = () => {
                   </div>
                 </div>
               </div>
-            </>
           )
         })}
       </>

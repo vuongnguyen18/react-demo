@@ -125,6 +125,7 @@ input::-webkit-inner-spin-button {
 }
 
 .add {
+    
     width: 48%;
     height: 40px;
     display: flex;
@@ -182,6 +183,26 @@ input::-webkit-inner-spin-button {
 
 .product-tabs {
     margin-top: 30px;
+}
+
+@media screen and (max-width:960px){
+    .smallImage {
+        width: 60px;
+        margin-left: -100px;
+    }
+    .bigImage {
+        width: 450px;
+    }
+    .wholePage {
+        display: grid;
+        width: 100px;
+    }
+    .buyAndAdd {
+        width: 85%;
+    }
+    .saleAndShipText {
+        margin-top: 20px;
+    }
 }
 
 

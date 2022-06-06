@@ -56,8 +56,8 @@ export default function Rating ({value}) {
     return (
     <div>
         {
-            getStars(value).map((value) => (
-                <img src={`/images/${value}.png`} className="change" width = {20} />
+            getStars(value).map((value,i) => (
+                <img src={`/images/${value}.png`} className="change" width = {20} key={i}/>
         ))}
         
     </div>

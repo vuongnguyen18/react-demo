@@ -158,8 +158,8 @@ const Product = () => {
                 <div className="product-tabs">
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                         <Tabs
-                            textColor="secondary"
-                            indicatorColor="secondary"
+                            textColor="primary"
+                            indicatorColor="primary"
                             value={tabs}
                             onChange={(_, value) => setTabs(value)}
                         >
